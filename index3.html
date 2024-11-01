@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 4, from LayoutIt!</title>
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+        body {
+            background: linear-gradient(130deg, brown, orange);
+        }
+        span {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: rgb(255, 255, 0);
+            text-transform: uppercase;
+        }
+
+        .container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos bajen a una nueva fila */
+    gap: 10px; /* Espacio entre los elementos */
+    }
+
+    .container-op {
+    flex: 1 1 calc(33.33% - 10px); /* Ocupa un tercio del ancho, ajustando para el gap */
+    max-width: calc(33.33% - 10px);
+    box-sizing: border-box;
+    text-align: center;
+    }
+
+    .container-op img {
+    width: 100%; /* Asegura que las imágenes se ajusten al ancho del contenedor */
+    height: auto;
+    }
+    .jumbotron {
+    background-color: #7B3F00; /* Color chocolate */
+    color: #fff; /* Opcional: cambia el color del texto si deseas que sea blanco para mejor contraste */
+    }
+    .container-map{
+        width: 80%;
+        margin: 0 auto;
+        max-width: 1000px;
+    }
+
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Mi Sitio</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Servicios</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Más Opciones</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Opción 1</a>
+                    <a class="dropdown-item" href="#">Opción 2</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Opción 3</a>
+                </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h2>ChocOnline</h2>
+                <p>Tienda Online de Chocolates especiales - La Paz</p>
+                <p><a class="btn btn-primary btn-large" href="#">Comprar Ahora.</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h3>Elija un chocolate</h3>
+    <div id="target" style="border: 1px solid #ccc; padding: 20px; cursor: context-menu;">
+        Haz clic derecho para ver los productos.
+    </div>
+    <div id="contextMenu" class="dropdown-menu">
+        <a class="dropdown-item" href="#">Bolivia</a>
+        <a class="dropdown-item" href="#">Argentina</a>
+        <a class="dropdown-item" href="#">Paraguay</a>
+        <a class="dropdown-item" href="#">Colombia</a>
+        <a class="dropdown-item" href="#">Brasil</a>
+        <a class="dropdown-item" href="#">Mexico</a>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h3>Productos</h3>
+    <div class="spinner-border" role="status">
+        <span class="sr-only"> Cargando...</span>
+    </div>
+    <div class="mt-4">
+        <button class="btn btn-primary" id="loadButton"> Cargar Datos</button>
+        <div id="spinnerContainer" style="display: none;">
+            <div class="spinner-border" role="status">
+                <span class="sr-only"> Cargando...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="container-op">
+        <span>chocolate en bolsa </span>
+        <img src="./img/chocobolsa.jpg" alt="chocobolsa">
+    </div>
+    <div class="container-op">
+        <span>Grageas en Bolsa </span>
+        <img src="./img/chocogrageas.jpg" alt="chocobolsa">
+    </div>
+    <div class="container-op">
+        <span>Chocolate en artesanales </span>
+        <img src="./img/chococaja2.jpg" alt="chocobolsa">
+    </div>
+    <div class="container-op">
+        <span>chocolate en caja </span>
+        <img src="./img/chococajas.jpg" alt="chocobolsa">
+    </div>
+    <div class="container-op">
+        <span>Tabletas de chocolate </span>
+        <img src="./img/chocotableta.jpg" alt="chocobolsa">
+    </div>
+    <div class="container-op">
+        <span>Tortas de chocolate </span>
+        <img src="./img/chocotortas.jpeg" alt="chocobolsa">
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#loadButton').click(function () {
+            $('#spinnerContainer').show();
+            setTimeout(function () {
+                $('#spinnerContainer').hide();
+                alert('Datos cargados!');
+            }, 2000);
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#target').on('contextmenu', function (e) {
+            e.preventDefault();
+            $('#contextMenu').css({
+                display: 'block',
+                left: e.pageX,
+                top: e.pageY
+            });
+        });
+        $(document).on('click', function () {
+            $('#contextMenu').hide();
+        });
+    });
+</script>
+
+<div class="container-map">
+    <h3 class="text-center mt-5">Busque su tienda cercana.</h3>
+    <div class="card mt-3">
+        <div class="card-body">
+            <button id="geolocationBtn" class="btn btn-primary mb-3">Obtener Ubicación</button>
+            <p id="status" class="text-muted"></p>
+        </div>
+        <div id="map"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFKb2w34CyFPXG-B2j8jYudDoEnAvFE1o&callback=initMap" async defer></script>
+
+<script>
+    let map;
+    let userMarker;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 10,
+            center: { lat: 0, lng: 0 },
+        });
+        document.getElementById("geolocationBtn").addEventListener("click", function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success, error);
+            } else {
+                document.getElementById("status").textContent = "La geolocalización no es soportada por tu navegador.";
+            }
+        });
+    }
+
+    function success(position) {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        document.getElementById("status").textContent = `Latitud: ${lat}, Longitud: ${lng}`;
+
+        const userLocation = new google.maps.LatLng(lat, lng);
+
+        if (!userMarker) {
+            userMarker = new google.maps.Marker({
+                position: userLocation,
+                map: map,
+                title: "Tu ubicación",
+            });
+        } else {
+            userMarker.setPosition(userLocation);
+        }
+
+        map.setCenter(userLocation);
+    }
+
+    function error() {
+        document.getElementById("status").textContent = "No se pudo obtener tu ubicación.";
+    }
+</script>
+
+</body>
+</html>
